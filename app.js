@@ -4,6 +4,8 @@ click.addEventListener('click', insereProduto)
 function insereProduto() {
     let nomeP = document.querySelector('#iNome').value
     let valorP = document.querySelector('#iVal').value
+    let cotacao = document.querySelector('#iCot').value
+    let imposto = document.querySelector('#iImp').value
     tabela = document.querySelector('#iCelula')
     let produto = {
         nome: nomeP,
@@ -11,8 +13,11 @@ function insereProduto() {
         valorReal: calculaDolar(valorP).toFixed(2),
         valorImposto: calculaImposto(valorP).toFixed(2)
     }
-    tabela.innerHTML = "<td>" + produto.nome + "</td>" + "<td><b>U$</b>" + produto.valor + "</td>" + "<td><b>R$</b>" + produto.valorReal + "</td>" + "<td><b>R$</b>" + produto.valorImposto + "</td>"
-
+    if ((nomeP == "") || (cotacao == "") || (valorP == "") || (imposto == "")) {
+        alert("preencha os campos vazios")
+    } else {
+        tabela.innerHTML = "<td>" + produto.nome + "</td>" + "<td><b>U$</b>" + produto.valor + "</td>" + "<td><b>R$</b>" + produto.valorReal + "</td>" + "<td><b>R$</b>" + produto.valorImposto + "</td>"
+    }
 }
 function calculaDolar(valorProduto) {
     let cotacao = document.querySelector('#iCot').value
